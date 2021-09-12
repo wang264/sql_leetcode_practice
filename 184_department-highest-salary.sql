@@ -7,11 +7,11 @@
 -- +----+-------+--------+--------------+
 -- | Id | Name  | Salary | DepartmentId |
 -- +----+-------+--------+--------------+
--- | 1  | Joe   | 70000  | 1            |
--- | 2  | Jim   | 90000  | 1            |
--- | 3  | Henry | 80000  | 2            |
--- | 4  | Sam   | 60000  | 2            |
--- | 5  | Max   | 90000  | 1            |
+-- | 1  | Joe     | 70000   | 1            |
+-- | 2  | Jim     | 90000   | 1            |
+-- | 3  | Henry | 80000   | 2            |
+-- | 4  | Sam   | 60000   | 2            |
+-- | 5  | Max    | 90000   | 1            |
 -- +----+-------+--------+--------------+
 -- The Department table holds all departments of the company.
 
@@ -27,8 +27,8 @@
 -- +------------+----------+--------+
 -- | Department | Employee | Salary |
 -- +------------+----------+--------+
--- | IT         | Max      | 90000  |
--- | IT         | Jim      | 90000  |
+-- | IT            | Max       | 90000  |
+-- | IT            | Jim        | 90000  |
 -- | Sales      | Henry    | 80000  |
 -- +------------+----------+--------+
 -- Explanation:
@@ -48,6 +48,22 @@
 -- Truncate table Department;
 -- insert into Department (Id, Name) values ('1', 'IT');
 -- insert into Department (Id, Name) values ('2', 'Sales');
+
+
+SELECT d.Name Department, e.Name Employee, e.Salary as Salary 
+FROM Employee e, Department d
+WHERE e.DepartmentId = d.Id
+AND e.Salary = 
+(
+	SELECT MAX(Salary) 
+    FROM Employee AS t 
+    WHERE t.DepartmentId = e.DepartmentId
+);
+
+
+SELECT MAX(Salary) 
+FROM Employee AS t 
+WHERE t.DepartmentId = e.DepartmentId;
 
 
 
