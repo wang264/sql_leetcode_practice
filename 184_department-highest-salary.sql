@@ -57,13 +57,9 @@ AND e.Salary =
 (
 	SELECT MAX(Salary) 
     FROM Employee AS t 
-    WHERE t.DepartmentId = e.DepartmentId
+    WHERE t.DepartmentId = d.Id
 );
 
-
-SELECT MAX(Salary) 
-FROM Employee AS t 
-WHERE t.DepartmentId = e.DepartmentId;
 
 
 
