@@ -89,15 +89,15 @@
 
 Select c.customer_id, c.customer_name
 From Orders o Left Join Customers c On o.customer_id = c.customer_id
-Group By o.customer_id
+Group By o.customer_id, c.customer_name
 Having
 	(
-    Sum( Case When o.product_name = 'A' Then 1 Else 0) >=1
+    Sum( Case When o.product_name = 'A' Then 1 Else 0 End) >=1
     And 
-    Sum( Case When o.product_name = 'B' Then 1 Else 0) >=1
+    Sum( Case When o.product_name = 'B' Then 1 Else 0 End) >=1
     And
-    Sum( Case When o.product_name = 'C' Then 1 Else 0) =0
-    )
+    Sum( Case When o.product_name = 'C' Then 1 Else 0 End) =0
+    );
 
 
 
