@@ -132,6 +132,8 @@ select * from Customers;
 
 select * from ORDERS;
 
+
+
 select * from Products;
 
 
@@ -170,6 +172,8 @@ from
 )  as a
 group by customer_id;
 
+
+select 
 
 
 
