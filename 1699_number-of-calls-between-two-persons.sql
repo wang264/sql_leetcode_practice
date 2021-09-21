@@ -57,9 +57,14 @@
 -- insert into Calls (from_id, to_id, duration) values ('3', '4', '200');
 -- insert into Calls (from_id, to_id, duration) values ('4', '3', '499');
 
-
-select * from Calls;
-
+select c.from_id as person1, c.to_id as person2, count(c.duration) as call_count, sum(c.duration) as total_duration
+from
+	(
+    -- 让from _id 一定比 to_id 小
+	select if(from_id<to_id,from_id,to_id) as from_id, if(to_id>from_id, to_id,from_id) as to_id, duration
+	from Calls
+	) c
+group by c.from_id, c.to_id;
 
 
 
